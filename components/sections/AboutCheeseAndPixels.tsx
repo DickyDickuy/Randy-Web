@@ -1,0 +1,88 @@
+'use client';
+
+import React from 'react';
+import SplitScreenSection from '@/components/layout/SplitScreenSection';
+import LogoMarquee from '@/components/ui/LogoMarquee';
+
+export default function AboutCheeseAndPixels() {
+  const leftContent = (
+    <div className="flex flex-col justify-between h-full p-8 md:p-12 lg:p-16 text-white select-none">
+      <div>
+        <div className="flex items-center space-x-3 mb-6">
+          <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
+          <span className="font-mono text-xs uppercase font-extrabold tracking-widest text-neutral-400">
+            03 / LEADERSHIP ETHOS
+          </span>
+        </div>
+        <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none uppercase text-white mb-6">
+          DECADE<br />OF<br />INNOVATION
+        </h2>
+        <p className="text-neutral-400 text-sm md:text-base max-w-md font-light leading-relaxed">
+          A decade of pioneering creative technology and scaling high-performing teams, grounded in integrity and purpose.
+        </p>
+      </div>
+
+      {/* Infinite Logo Marquee */}
+      <div className="my-8 w-full">
+        <span className="text-[10px] uppercase font-mono tracking-widest text-neutral-400 block mb-3">
+          TRUSTED BY GLOBAL BRANDS & ENTERPRISES
+        </span>
+        <LogoMarquee />
+      </div>
+
+      <div className="border-t border-neutral-800 pt-4 flex justify-between items-center text-xs font-mono text-neutral-400">
+        <span>VISIONARY EDGE</span>
+        <span>HUMAN-CENTRIC SYSTEMS</span>
+      </div>
+    </div>
+  );
+
+  const rightContent = (
+    <div className="flex flex-col justify-center min-h-dvh p-6 sm:p-10 md:p-16 lg:p-24 text-neutral-900 space-y-8 sm:space-y-12 bg-white">
+      <div className="space-y-6">
+        <h3 className="text-2xl md:text-4xl font-extrabold tracking-tight leading-snug text-black">
+          "Excellence in executive leadership requires balancing bold risk-taking with unyielding integrity."
+        </h3>
+        <p className="text-neutral-700 text-base md:text-xl font-light leading-relaxed">
+          Building a top-tier creative studio demands resilience, strategic foresight, and thousands of high-stakes decisions. Behind every global product launch and spatial experience, my anchor is a commitment to human-centric principles, long-term brand equity, and sustainable execution.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6 border-y border-neutral-200">
+        <div className="space-y-2">
+          <h4 className="text-lg font-bold uppercase tracking-wider text-black">Visionary Edge</h4>
+          <p className="text-neutral-600 text-sm md:text-base leading-relaxed">
+            Refusing industry defaults. Constantly discovering new frontiers in creative engineering, spatial design, and executive strategy.
+          </p>
+        </div>
+
+        <div className="space-y-2">
+          <h4 className="text-lg font-bold uppercase tracking-wider text-black">Human-Centric Systems</h4>
+          <p className="text-neutral-600 text-sm md:text-base leading-relaxed">
+            Empowering clients and multidisciplinary engineering teams with transparent, high-trust leadership and clear communication.
+          </p>
+        </div>
+      </div>
+
+      <div className="p-6 bg-neutral-950 text-white rounded-2xl border border-neutral-800 space-y-3">
+        <span className="text-xs font-mono font-bold uppercase text-neutral-400">
+          EXECUTIVE CREED
+        </span>
+        <p className="text-white font-medium italic text-base md:text-lg">
+          "If a digital or spatial experience doesn't evoke wonder, drive strategic clarity, and leave an indelible impression, the work isn't done."
+        </p>
+      </div>
+    </div>
+  );
+
+  return (
+    <SplitScreenSection
+      id="the-journey"
+      leftBg="bg-black"
+      rightBg="bg-white"
+      left={leftContent}
+      right={rightContent}
+      desktopReverse={true}
+    />
+  );
+}
