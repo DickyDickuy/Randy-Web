@@ -1,29 +1,91 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
-const LOGOS = [
-  'NIKE',
-  'APPLE',
-  'SPOTIFY',
-  'RED BULL',
-  'BALENCIAGA',
-  'SONY',
-  'HYUNDAI',
-  'ADIDAS',
+const CLIENT_LOGOS = [
+  "/images/client-KTM.png",
+  "/images/client-astra.png",
+  "/images/client-bank-bni.png",
+  "/images/client-bank-bri.png",
+  "/images/client-bank-bsi.png",
+  "/images/client-bank-hsbc.png",
+  "/images/client-citilink.png",
+  "/images/client-dana.png",
+  "/images/client-dbs.png",
+  "/images/client-djarum.png",
+  "/images/client-flip.png",
+  "/images/client-garuda-airline.png",
+  "/images/client-kominfo.png",
+  "/images/client-motogp.png",
+  "/images/client-noice.png",
+  "/images/client-ocbc.png",
+  "/images/client-pokemon.png",
 ];
 
 export default function LogoMarquee() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mousePosRef = useRef<{ x: number; y: number } | null>(null);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+
+  useEffect(() => {
+    let animFrameId: number;
+
+    const checkHover = () => {
+      if (mousePosRef.current) {
+        const el = document.elementFromPoint(mousePosRef.current.x, mousePosRef.current.y);
+        const logoEl = el?.closest('[data-logo-index]');
+        if (logoEl) {
+          const idx = Number(logoEl.getAttribute('data-logo-index'));
+          setHoveredIdx(idx);
+        } else {
+          setHoveredIdx(null);
+        }
+      } else {
+        setHoveredIdx(null);
+      }
+      animFrameId = requestAnimationFrame(checkHover);
+    };
+
+    animFrameId = requestAnimationFrame(checkHover);
+
+    return () => {
+      cancelAnimationFrame(animFrameId);
+    };
+  }, []);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    mousePosRef.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handleMouseLeave = () => {
+    mousePosRef.current = null;
+    setHoveredIdx(null);
+  };
+
   return (
-    <div className="w-full overflow-hidden select-none py-6 border-y border-purple-400/30 bg-purple-950/20 backdrop-blur-sm">
-      <div className="flex w-max animate-marquee space-x-12">
-        {[...LOGOS, ...LOGOS, ...LOGOS].map((logo, idx) => (
+    <div 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="w-full overflow-hidden select-none py-10 bg-white group border border-gray-200 rounded-3xl"
+    >
+      <div className="flex w-max items-center animate-marquee gap-16 md:gap-24 px-8 md:px-12">
+        {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((src, idx) => (
           <div
             key={idx}
-            className="flex items-center space-x-3 text-purple-200/80 font-black text-xl md:text-2xl tracking-widest uppercase hover:text-white transition-colors cursor-pointer"
+            data-logo-index={idx}
+            className={`shrink-0 flex items-center justify-center transition-all duration-300 cursor-pointer grayscale-0 opacity-100 ${
+              hoveredIdx === idx
+                ? 'md:grayscale-0 md:opacity-100 md:scale-110'
+                : 'md:grayscale md:opacity-60'
+            }`}
           >
-            <span>{logo}</span>
-            <span className="text-purple-400 text-sm">✦</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={src}
+              alt="Client Logo"
+              className="h-10 md:h-12 lg:h-14 w-auto object-contain pointer-events-none"
+            />
           </div>
         ))}
       </div>
@@ -34,14 +96,11 @@ export default function LogoMarquee() {
             transform: translateX(0%);
           }
           100% {
-            transform: translateX(-33.333%);
+            transform: translateX(-50%);
           }
         }
         .animate-marquee {
-          animation: marquee 20s linear infinite;
-        }
-        .animate-marquee:hover {
-          animation-play-state: paused;
+          animation: marquee 30s linear infinite;
         }
       `}</style>
     </div>

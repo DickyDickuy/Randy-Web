@@ -9,12 +9,7 @@ export default function WhoWeAre() {
     <div className="flex flex-col justify-between h-full p-6 sm:p-10 md:p-12 lg:p-16 text-black select-none">
       {/* Top Header */}
       <div>
-        <div className="flex items-center space-x-3 mb-6">
-          <span className="w-2.5 h-2.5 bg-black rounded-full animate-ping" />
-          <span className="font-mono text-xs uppercase font-extrabold tracking-widest text-black/70">
-            01 / EXECUTIVE VISION
-          </span>
-        </div>
+
         <h2 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-none uppercase text-black">
           TURNING<br />VISION A REALITY
         </h2>

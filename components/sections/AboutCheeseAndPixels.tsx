@@ -8,12 +8,6 @@ export default function AboutCheeseAndPixels() {
   const leftContent = (
     <div className="flex flex-col justify-between h-full p-8 md:p-12 lg:p-16 text-white select-none">
       <div>
-        <div className="flex items-center space-x-3 mb-6">
-          <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
-          <span className="font-mono text-xs uppercase font-extrabold tracking-widest text-neutral-400">
-            03 / LEADERSHIP ETHOS
-          </span>
-        </div>
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none uppercase text-white mb-6">
           DECADE<br />OF<br />INNOVATION
         </h2>
@@ -64,14 +58,7 @@ export default function AboutCheeseAndPixels() {
         </div>
       </div>
 
-      <div className="p-6 bg-neutral-950 text-white rounded-2xl border border-neutral-800 space-y-3">
-        <span className="text-xs font-mono font-bold uppercase text-neutral-400">
-          EXECUTIVE CREED
-        </span>
-        <p className="text-white font-medium italic text-base md:text-lg">
-          "If a digital or spatial experience doesn't evoke wonder, drive strategic clarity, and leave an indelible impression, the work isn't done."
-        </p>
-      </div>
+
     </div>
   );
 

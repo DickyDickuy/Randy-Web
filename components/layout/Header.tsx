@@ -21,9 +21,18 @@ export default function Header() {
     { label: 'VISION', href: '#about-me' },
     { label: 'CAPABILITIES', href: '#core-expertise' },
     { label: 'ETHOS', href: '#the-journey' },
-    { label: 'WORKS', href: '#selected-masterpieces' },
+    { label: 'CASE STUDIES', href: '#case-studies' },
     { label: 'CONTACT', href: '#contact' },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <header
@@ -56,7 +65,7 @@ export default function Header() {
           <a
             key={link.href}
             href={link.href}
-            onClick={() => setIsOpen(false)}
+            onClick={(e) => handleNavClick(e, link.href)}
             className="font-mono text-xs sm:text-sm font-black uppercase tracking-wider text-right text-white hover:opacity-50 transition-opacity py-0.5 block"
           >
             {link.label}

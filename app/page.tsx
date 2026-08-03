@@ -3,8 +3,8 @@ import Hero from '@/components/Hero';
 import WhoWeAre from '@/components/sections/WhoWeAre';
 import BespokeServices from '@/components/sections/BespokeServices';
 import AboutCheeseAndPixels from '@/components/sections/AboutCheeseAndPixels';
-import MeetTheTeam from '@/components/sections/MeetTheTeam';
-import ContactSection from '@/components/sections/ContactSection';
+import CaseStudies from '@/components/sections/CaseStudies';
+import Footer from '@/components/layout/Footer';
 
 export default function Home() {
   return (
@@ -14,8 +14,8 @@ export default function Home() {
       <WhoWeAre />
       <BespokeServices />
       <AboutCheeseAndPixels />
-      <MeetTheTeam />
-      <ContactSection />
+      <CaseStudies />
+      <Footer />
     </main>
   );
 }

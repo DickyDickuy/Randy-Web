@@ -194,17 +194,6 @@ export default function ContactSection() {
           </form>
         )}
 
-        {/* Footer info */}
-        <div className="border-t border-neutral-800 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center text-xs font-mono text-neutral-400 gap-4">
-          <div>
-            <span>RANDY EXECUTIVE PORTFOLIO © 2025</span>
-          </div>
-          <div className="flex space-x-6">
-            <a href="#about-me" className="hover:text-white transition-colors">
-              BACK TO TOP ↑
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );
