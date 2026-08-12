@@ -55,6 +55,7 @@ const compositeFragmentShader = `
   uniform sampler2D u_video;   // video behind
   uniform sampler2D u_mask;    // painted reveal mask
   uniform vec2 u_resolution;
+  uniform vec2 u_videoRes;
   uniform float u_time;
   varying vec2 vUv;
 
@@ -69,11 +70,29 @@ const compositeFragmentShader = `
     // Threshold: pixel blocks appear/disappear discretely
     float pixelMask = step(0.15, maskVal);
 
-    vec4 imgColor = texture2D(u_image, vUv);
-    vec4 vidColor = texture2D(u_video, vUv);
+    // Calculate object-fit contain UVs so video scales down proportionally on mobile
+    float screenAspect = u_resolution.x / u_resolution.y;
+    float videoAspect = u_videoRes.x / u_videoRes.y;
 
-    // Fallback if video frame is loading
-    if (length(vidColor.rgb) < 0.02) {
+    vec2 videoScale = vec2(1.0);
+    if (screenAspect > videoAspect) {
+      // Screen is wider than video -> fit video height
+      videoScale = vec2(screenAspect / videoAspect, 1.0);
+    } else {
+      // Screen is taller than video (e.g. mobile) -> fit video width
+      videoScale = vec2(1.0, videoAspect / screenAspect);
+    }
+    vec2 videoUV = (vUv - 0.5) * videoScale + 0.5;
+
+    vec4 imgColor = texture2D(u_image, vUv);
+
+    vec4 vidColor;
+    if (videoUV.x >= 0.0 && videoUV.x <= 1.0 && videoUV.y >= 0.0 && videoUV.y <= 1.0) {
+      vidColor = texture2D(u_video, videoUV);
+      if (length(vidColor.rgb) < 0.02) {
+        vidColor = vec4(0.08, 0.08, 0.12, 1.0);
+      }
+    } else {
       vidColor = vec4(0.08, 0.08, 0.12, 1.0);
     }
 
@@ -85,20 +104,31 @@ const compositeFragmentShader = `
 `;
 
 // Generate canvas texture with giant "RANDY'" black text on white bg
-function createDefaultTextTexture(): THREE.CanvasTexture {
+// Canvas matches viewport aspect ratio to prevent text stretching
+function createDefaultTextTexture(viewportWidth: number, viewportHeight: number): THREE.CanvasTexture {
   const canvas = document.createElement('canvas');
-  canvas.width = 2048;
-  canvas.height = 1024;
+  // Use a base resolution scaled to viewport aspect ratio
+  const baseSize = 2048;
+  const aspect = viewportWidth / viewportHeight;
+  if (aspect >= 1) {
+    canvas.width = baseSize;
+    canvas.height = Math.round(baseSize / aspect);
+  } else {
+    canvas.width = Math.round(baseSize * aspect);
+    canvas.height = baseSize;
+  }
   const ctx = canvas.getContext('2d');
   if (ctx) {
     ctx.fillStyle = '#FFFFFF';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = '#000000';
-    ctx.font = '900 480px "Inter", "Helvetica Neue", "Arial Black", sans-serif';
+    // Scale font size relative to canvas width so it fits proportionally
+    const fontSize = Math.round(canvas.width * 0.23);
+    ctx.font = `900 ${fontSize}px "Inter", "Helvetica Neue", "Arial Black", sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('RANDY\u0027', canvas.width / 2, canvas.height / 2 + 10);
+    ctx.fillText('RANDY\u0027', canvas.width / 2, canvas.height / 2);
   }
   const texture = new THREE.CanvasTexture(canvas);
   texture.needsUpdate = true;
@@ -139,13 +169,15 @@ export default function Hero() {
     videoTexture.magFilter = THREE.LinearFilter;
     videoTexture.format = THREE.RGBAFormat;
 
-    let imageTexture: THREE.Texture = createDefaultTextTexture();
+    let imageTexture: THREE.Texture = createDefaultTextTexture(window.innerWidth, window.innerHeight);
+    let usingFallbackTexture = true;
 
     const loader = new THREE.TextureLoader();
     loader.load(
       '/layer1.jpg',
       (loadedTex) => {
         imageTexture = loadedTex;
+        usingFallbackTexture = false;
         compositeMaterial.uniforms.u_image.value = imageTexture;
       },
       undefined,
@@ -193,6 +225,7 @@ export default function Hero() {
         u_video: { value: videoTexture },
         u_mask: { value: maskB.texture },
         u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+        u_videoRes: { value: new THREE.Vector2(1920, 1080) },
         u_time: { value: 0 },
       },
     });
@@ -255,6 +288,9 @@ export default function Hero() {
 
       if (video.readyState >= video.HAVE_CURRENT_DATA) {
         videoTexture.needsUpdate = true;
+        if (video.videoWidth && video.videoHeight) {
+          compositeMaterial.uniforms.u_videoRes.value.set(video.videoWidth, video.videoHeight);
+        }
       }
 
       mousePos.x += (targetMousePos.x - mousePos.x) * 0.25;
@@ -289,6 +325,13 @@ export default function Hero() {
       renderer.setSize(width, height);
       maskMaterial.uniforms.u_resolution.value.set(width, height);
       compositeMaterial.uniforms.u_resolution.value.set(width, height);
+
+      // Regenerate fallback canvas texture to match new aspect ratio
+      if (usingFallbackTexture) {
+        imageTexture.dispose();
+        imageTexture = createDefaultTextTexture(width, height);
+        compositeMaterial.uniforms.u_image.value = imageTexture;
+      }
     };
 
     window.addEventListener('resize', handleResize);
