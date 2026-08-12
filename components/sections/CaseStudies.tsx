@@ -3,24 +3,24 @@
 import React, { useRef, useState, useEffect } from 'react';
 
 const CASE_STUDIES = [
-  { title: 'Art Installation HUT Astra 65 at Menara Astra & AMDI Building', preview: '/images/event/Art Installation HUT Astra 65 at Menara Astra & AMDI Building 👷🏽_♂️🪜.jpg', tags: ['Event Organizer'] },
-  { title: 'Break Out Day Festival by Djarum', preview: '/images/event/Break Out Day Festival by Djarum2O24.jpg', tags: ['Event Organizer'] },
-  { title: 'Campaign Activation Flip 2023', preview: '/images/event/Campaign Activavtion FLIP 2023.jpg', tags: ['Event Organizer'] },
-  { title: 'Ed Sheeran Divide World Tour 2019 Gelora Bung Karno Stadium Jakarta', preview: '/images/event/ED SHEERAN Divide World Tour 2019 Gelora Bung Karno Stadium 🏟 Jakarta, May 3rd 2019PK Entertain.jpg', tags: ['Event Organizer'] },
-  { title: 'Esmod Jakarta Creative Show 2023', preview: '/images/event/Esmod Jakarta Creative Show 2023 4.jpg', tags: ['Event Organizer'] },
-  { title: 'Godrej Pekan Raya Jakarta 2023', preview: '/images/event/Godrej PRJ 2023.gif', tags: ['Event Organizer'] },
-  { title: 'Grand Opening Premium Guest House OCBC 2024', preview: '/images/event/Grand Opening Premium Guest House OCBC 2024.jpg', tags: ['Event Organizer'] },
-  { title: 'HSBC 2025 Summit', preview: '/images/event/hsbc 2025 summit.jpg', tags: ['Event Organizer'] },
-  { title: 'HSBC Iftar', preview: '/images/event/HSBC Iftar.jpg', tags: ['Event Organizer'] },
-  { title: 'Java Jazz Festival 2017', preview: '/images/event/Java Jazz Festival 2017.PNG', tags: ['Event Organizer'] },
-  { title: 'Joyland Festival 2019', preview: '/images/event/Joyland Festival 2019.jpg', tags: ['Event Organizer'] },
-  { title: 'Synchronize Fest 2019', preview: '/images/event/menyambut malam dengan ungu nya awan di hari terakhir.jpg', tags: ['Event Organizer'] },
-  { title: 'OCBC Intimate Dinner 2024', preview: '/images/event/OCBC Intimate Dinner 2024 2.jpg', tags: ['Event Organizer'] },
-  { title: 'OLX Indonesia at Indonesia E-Commerce Summit Expo 2017', preview: '/images/event/OLXindo_IESE 2017.PNG', tags: ['Event Organizer'] },
-  { title: 'Pokemon Press Conference 2025', preview: '/images/event/POKEMON PRESS CONFERENCE 2025 - The Pokemon Company menggelar acara press conference pada tangga.jpg', tags: ['Event Organizer'] },
-  { title: 'Menara Astra 2022', preview: '/images/event/RAMADAN ART INSTALLATION MENARA ASTRA 2022.PNG', tags: ['Ramadhan Art Installation'] },
-  { title: 'Road To MotoGP Mandalika 2024', preview: '/images/event/Road To MotoGP Mandalika 2024.jpeg', tags: ['Event Organizer'] },
-  { title: 'Road To Summit Concept, HSBC 2024', preview: '/images/event/Road To SummitConcept, HSBC 2024.jpg', tags: ['Event Organizer', 'Tenant'] },
+  { title: 'Art Installation HUT Astra 65 at Menara Astra & AMDI Building', preview: '/images/event/art-installation-hut-astra-65.jpg', tags: ['Event Organizer'] },
+  { title: 'Break Out Day Festival by Djarum', preview: '/images/event/break-out-day-festival-djarum-2024.jpg', tags: ['Event Organizer'] },
+  { title: 'Campaign Activation Flip 2023', preview: '/images/event/campaign-activation-flip-2023.jpg', tags: ['Event Organizer'] },
+  { title: 'Ed Sheeran Divide World Tour 2019 Gelora Bung Karno Stadium Jakarta', preview: '/images/event/ed-sheeran-divide-world-tour-2019.jpg', tags: ['Event Organizer'] },
+  { title: 'Esmod Jakarta Creative Show 2023', preview: '/images/event/esmod-jakarta-creative-show-2023.jpg', tags: ['Event Organizer'] },
+  { title: 'Godrej Pekan Raya Jakarta 2023', preview: '/images/event/godrej-prj-2023.gif', tags: ['Event Organizer'] },
+  { title: 'Grand Opening Premium Guest House OCBC 2024', preview: '/images/event/grand-opening-ocbc-2024.jpg', tags: ['Event Organizer'] },
+  { title: 'HSBC 2025 Summit', preview: '/images/event/hsbc-2025-summit.jpg', tags: ['Event Organizer'] },
+  { title: 'HSBC Iftar', preview: '/images/event/hsbc-iftar.jpg', tags: ['Event Organizer'] },
+  { title: 'Java Jazz Festival 2017', preview: '/images/event/java-jazz-festival-2017.png', tags: ['Event Organizer'] },
+  { title: 'Joyland Festival 2019', preview: '/images/event/joyland-festival-2019.jpg', tags: ['Event Organizer'] },
+  { title: 'Synchronize Fest 2019', preview: '/images/event/synchronize-fest-2019.jpg', tags: ['Event Organizer'] },
+  { title: 'OCBC Intimate Dinner 2024', preview: '/images/event/ocbc-intimate-dinner-2024.jpg', tags: ['Event Organizer'] },
+  { title: 'OLX Indonesia at Indonesia E-Commerce Summit Expo 2017', preview: '/images/event/olx-indo-iese-2017.png', tags: ['Event Organizer'] },
+  { title: 'Pokemon Press Conference 2025', preview: '/images/event/pokemon-press-conference-2025.jpg', tags: ['Event Organizer'] },
+  { title: 'Menara Astra 2022', preview: '/images/event/ramadan-art-installation-menara-astra-2022.png', tags: ['Ramadhan Art Installation'] },
+  { title: 'Road To MotoGP Mandalika 2024', preview: '/images/event/road-to-motogp-mandalika-2024.jpeg', tags: ['Event Organizer'] },
+  { title: 'Road To Summit Concept, HSBC 2024', preview: '/images/event/road-to-summit-concept-hsbc-2024.jpg', tags: ['Event Organizer', 'Tenant'] },
 ];
 
 export default function CaseStudies() {
@@ -134,7 +134,7 @@ export default function CaseStudies() {
 
       {/* Floating preview for desktop */}
       <div
-        className={`hidden md:grid absolute pointer-events-none z-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] place-items-center ${
+        className={`hidden md:grid absolute pointer-events-none z-30 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] place-items-center ${
           hoveredIndex !== null ? "opacity-100 scale-100" : "opacity-0 scale-95"
         }`}
         style={{
