@@ -5,10 +5,6 @@ import {
   PerspectiveCamera,
   WebGLRenderer,
   Color,
-  Points,
-  BufferGeometry,
-  Float32BufferAttribute,
-  PointsMaterial,
   SphereGeometry,
   MeshBasicMaterial,
   InstancedMesh,
@@ -16,14 +12,6 @@ import {
   Group,
   Vector3,
 } from "three";
-
-const RenderTarget = {
-  current: () => "preview",
-  canvas: "canvas",
-  export: "export",
-  thumbnail: "thumbnail",
-  preview: "preview",
-};
 
 interface ParticleSphereRefactorProps {
   particlesCount?: number;
