@@ -91,7 +91,7 @@ export default function CaseStudies() {
   return (
     <section id="case-studies" ref={sectionRef} className="relative w-full py-20 bg-white text-black overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase text-black mb-12">CASE STUDIES</h2>
+        <h2 className="text-4xl md:text-5xl font-serif font-semibold tracking-tight uppercase text-black mb-12 hover:tracking-wider transition-all duration-300">CASE STUDIES</h2>
         
         <ul className="flex flex-col m-0 p-0 border-t border-neutral-200">
           {CASE_STUDIES.map((cs, idx) => (
@@ -109,10 +109,10 @@ export default function CaseStudies() {
               </div>
 
               <div className="flex items-center gap-4 md:gap-8 w-full md:w-auto">
-                <span className="font-mono font-bold text-3xl md:text-5xl text-neutral-300 group-hover:text-black transition-colors duration-300">
+                <span className="font-serif font-bold text-3xl md:text-5xl text-neutral-300 group-hover:text-black transition-colors duration-300">
                   {String(idx + 1).padStart(2, '0')}
                 </span>
-                <h3 className="text-2xl md:text-4xl font-extrabold leading-tight text-neutral-600 group-hover:text-black md:group-hover:translate-x-4 transition-transform duration-500 max-w-2xl">
+                <h3 className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-neutral-600 group-hover:text-black md:group-hover:translate-x-4 transition-all duration-500 max-w-2xl">
                   {cs.title}
                 </h3>
               </div>
@@ -121,7 +121,7 @@ export default function CaseStudies() {
                 {cs.tags.map((tag, tIdx) => (
                   <li
                     key={tIdx}
-                    className="text-xs font-mono font-semibold uppercase tracking-wider text-neutral-500 border border-neutral-200 rounded-full px-4 py-2 transition-colors duration-300 group-hover:bg-black group-hover:text-white group-hover:border-black"
+                    className="text-[11px] sm:text-xs font-lato font-bold uppercase tracking-wider text-neutral-600 border border-neutral-200 rounded-full px-4 py-1.5 transition-all duration-300 group-hover:bg-black group-hover:text-white group-hover:border-black"
                   >
                     {tag}
                   </li>

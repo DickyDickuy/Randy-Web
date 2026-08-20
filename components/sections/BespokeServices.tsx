@@ -73,38 +73,42 @@ export default function BespokeServices() {
     <div className="flex flex-col justify-between h-full p-6 sm:p-10 md:p-12 lg:p-16 text-white select-none">
       <div>
 
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none uppercase text-white mb-6">
+        <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-semibold tracking-tight leading-none uppercase text-white mb-6 hover:tracking-wider transition-all duration-300">
           EXECUTIVE<br />STUDIO
         </h2>
-        <p className="text-neutral-400 text-sm md:text-base max-w-md font-light leading-relaxed">
+        <p className="font-lato text-neutral-300 text-sm md:text-base max-w-md font-normal leading-relaxed">
           Guiding multidisciplinary teams to build high-stakes digital, spatial, and interactive masterpieces.
         </p>
       </div>
 
-      {/* Tech Image Collage Mockup */}
-      <div className="my-8 relative w-full aspect-[4/3] rounded-2xl bg-neutral-950 border border-neutral-800 p-4 flex flex-col justify-between overflow-hidden shadow-2xl">
-        <div className="flex justify-between items-center z-10">
-          <div className="flex space-x-2">
-            <div className="w-3 h-3 rounded-full bg-neutral-700" />
-            <div className="w-3 h-3 rounded-full bg-neutral-700" />
-            <div className="w-3 h-3 rounded-full bg-neutral-700" />
-          </div>
-          <span className="text-[10px] font-mono text-neutral-400">SYSTEM_INITIALIZED</span>
+      {/* Studio Showreel Video */}
+      <div className="my-6 sm:my-8 relative w-full aspect-video sm:aspect-[4/3] max-h-[300px] sm:max-h-none rounded-2xl bg-neutral-950 border border-neutral-800 overflow-hidden shadow-2xl group">
+        <video
+          src="/videos/special20-showreel-1080.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        />
+
+        {/* Video Overlay Top Badge */}
+        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 flex items-center space-x-2 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-white/90">
+            SHOWREEL
+          </span>
         </div>
 
-        <div className="z-10 space-y-2">
-          <div className="h-2 w-3/4 bg-neutral-800 rounded animate-pulse" />
-          <div className="h-2 w-1/2 bg-white/60 rounded" />
-          <div className="h-2 w-5/6 bg-neutral-800 rounded" />
-        </div>
-
-        <div className="flex justify-between items-end z-10 text-[10px] font-mono text-white">
-          <span>STATUS: ONLINE</span>
-          <span>STRATEGY_ENGINE v1.0</span>
+        {/* Video Overlay Bottom Label */}
+        <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10 flex justify-between items-center text-[10px] font-mono text-white/80 bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/5">
+          <span>EXECUTIVE REEL</span>
+          <span>1080P HD</span>
         </div>
       </div>
 
-      <div className="border-t border-neutral-800 pt-4 flex justify-between items-center text-xs font-mono text-neutral-400">
+      <div className="border-t border-neutral-800 pt-4 flex justify-between items-center text-xs font-lato font-semibold uppercase tracking-wider text-neutral-400">
         <span>CRAFTED WITH PRECISION</span>
         <span>5 CORE DISCIPLINES</span>
       </div>

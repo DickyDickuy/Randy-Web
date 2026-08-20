@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import gsap from 'gsap';
+import { LiquidMetalButton } from '@/components/ui/liquid-metal-button';
 
 // --- Shaders for the Paint-to-Reveal Mask (FBO) ---
 const maskVertexShader = `
@@ -382,37 +383,40 @@ export default function Hero() {
         {/* Top Header */}
         <header className="flex justify-between items-start w-full">
           <div className="flex flex-col items-start space-y-4 max-w-xs sm:max-w-sm">
-            <p className="text-xs sm:text-sm md:text-base font-semibold leading-snug tracking-tight text-white">
+            <p className="font-lato text-xs sm:text-sm md:text-base font-normal leading-relaxed tracking-normal text-white/90">
               "Turning Bold Visions into Unforgettable Realities."<br />
               -Randy, 2025
             </p>
-            <a
-              href="#contact"
-              className="pointer-events-auto bg-white hover:bg-neutral-200 active:scale-95 text-black font-bold text-xs sm:text-sm px-6 py-3.5 min-h-[44px] rounded-full transition-all duration-300 transform hover:scale-105 shadow-md inline-flex items-center space-x-2 cursor-pointer"
-            >
-              <span>LET'S COLLABORATE</span>
-              <span>➔</span>
-            </a>
+            <div className="pointer-events-auto pt-2">
+              <LiquidMetalButton
+                label="LET'S COLLABORATE ➔"
+                href="#contact"
+              />
+            </div>
           </div>
         </header>
 
         {/* Bottom Footer */}
         <footer className="flex justify-between items-end w-full text-xs sm:text-sm font-medium tracking-tight text-white gap-4">
           <div>
-            <p className="font-semibold text-xs sm:text-sm">A Personal Portfolio / CEO & Creative Visionary</p>
+            <p className="font-lato font-normal text-xs sm:text-sm text-white/90">A Personal Portfolio / CEO & Creative Visionary</p>
           </div>
 
           <div className="flex items-center space-x-2 sm:space-x-4">
             <a
-              href="#linkedin"
-              className="pointer-events-auto hover:opacity-60 font-semibold text-white min-h-[44px] px-2 inline-flex items-center"
+              href="https://www.linkedin.com/in/randynomina333/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pointer-events-auto font-semibold text-white hover:bg-white hover:text-black transition-all duration-300 min-h-[44px] px-3 py-1 rounded-md inline-flex items-center"
             >
               LINKEDIN
             </a>
             <span>/</span>
             <a
-              href="#instagram"
-              className="pointer-events-auto hover:opacity-60 font-semibold text-white min-h-[44px] px-2 inline-flex items-center"
+              href="https://www.instagram.com/randyudesyaf/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pointer-events-auto font-semibold text-white hover:bg-white hover:text-black transition-all duration-300 min-h-[44px] px-3 py-1 rounded-md inline-flex items-center"
             >
               INSTAGRAM
             </a>

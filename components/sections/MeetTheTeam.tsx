@@ -57,10 +57,10 @@ export default function MeetTheTeam() {
             04 / CASE STUDIES
           </span>
         </div>
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none uppercase text-white mb-4">
+        <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-semibold tracking-tight leading-none uppercase text-white mb-4 hover:tracking-wider transition-all duration-300">
           SELECTED<br />MASTERPIECES
         </h2>
-        <p className="text-neutral-400 text-sm md:text-base max-w-md font-light leading-relaxed">
+        <p className="font-lato text-neutral-300 text-sm md:text-base max-w-md font-normal leading-relaxed">
           A curated selection of flagship enterprise experiences directed under CEO Randy's leadership.
         </p>
       </div>
@@ -85,23 +85,23 @@ export default function MeetTheTeam() {
           className="group pb-10 border-b border-neutral-200 last:border-0 last:pb-0 space-y-4"
         >
           <div className="flex justify-between items-baseline">
-            <span className="font-mono font-bold text-black text-sm md:text-base">
+            <span className="font-lato font-bold text-black text-xs sm:text-sm uppercase tracking-wider">
               CASE STUDY [{work.num}]
             </span>
-            <span className="text-xs uppercase font-mono px-3 py-1 bg-black text-white rounded-full font-semibold">
+            <span className="text-xs uppercase font-lato px-3 py-1 bg-black text-white rounded-full font-bold tracking-wider">
               {work.type}
             </span>
           </div>
 
-          <h3 className="text-2xl md:text-4xl font-extrabold text-black group-hover:opacity-70 transition-opacity">
+          <h3 className="text-2xl md:text-4xl font-serif font-semibold text-black group-hover:opacity-70 transition-opacity">
             {work.title}
           </h3>
 
-          <p className="text-neutral-600 text-base md:text-lg leading-relaxed font-light">
+          <p className="font-lato text-black/80 text-base md:text-lg leading-relaxed font-normal">
             {work.summary}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono pt-2 text-neutral-500">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-lato pt-2 text-neutral-500">
             <div>
               <span className="block text-black font-bold mb-0.5">CATEGORY</span>
               <span>{work.client}</span>

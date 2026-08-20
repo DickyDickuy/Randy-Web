@@ -9,7 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "Helvetica Neue", "Arial", "sans-serif"],
+        sans: ["var(--font-lato)", "Lato", "sans-serif"],
+        serif: ["var(--font-playfair)", "Playfair Display", "serif"],
+        playfair: ["var(--font-playfair)", "Playfair Display", "serif"],
+        lato: ["var(--font-lato)", "Lato", "sans-serif"],
       },
     },
   },

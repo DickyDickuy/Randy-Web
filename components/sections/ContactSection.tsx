@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import HoneypotField from '@/components/ui/HoneypotField';
+import { LiquidMetalButton } from '@/components/ui/liquid-metal-button';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -59,11 +60,11 @@ export default function ContactSection() {
               05 / EXECUTIVE INQUIRY
             </span>
           </div>
-          <h2 className="text-4xl md:text-7xl font-black tracking-tight uppercase leading-none">
+          <h2 className="text-4xl md:text-7xl font-serif font-semibold tracking-tight uppercase leading-none text-white hover:tracking-wider transition-all duration-300">
             BUILD SOMETHING<br />
             <span className="text-white underline decoration-neutral-600 underline-offset-8">EXTRAORDINARY</span> TOGETHER
           </h2>
-          <p className="text-neutral-400 text-base md:text-xl max-w-2xl font-light leading-relaxed pt-2">
+          <p className="font-lato text-neutral-300 text-base md:text-xl max-w-2xl font-normal leading-relaxed pt-2">
             Planning a flagship enterprise initiative, spatial experience, or seeking a strategic partnership with CEO Randy? Initiate a direct consultation below.
           </p>
         </div>
@@ -74,25 +75,25 @@ export default function ContactSection() {
             <div className="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-black mx-auto mb-4">
               ✓
             </div>
-            <h3 className="text-3xl font-black uppercase text-white">INQUIRY TRANSMITTED</h3>
-            <p className="text-neutral-300 text-base">
+            <h3 className="text-3xl font-serif font-semibold uppercase text-white">INQUIRY TRANSMITTED</h3>
+            <p className="font-lato text-neutral-300 text-base font-normal leading-relaxed">
               Thank you for reaching out. Our executive team will review your inquiry and connect within 24 hours.
             </p>
-            <button
-              onClick={() => {
-                setSubmitted(false);
-                setFormData({
-                  fullName: '',
-                  companyName: '',
-                  email: '',
-                  message: '',
-                  website: '',
-                });
-              }}
-              className="mt-6 px-8 py-3 bg-white hover:bg-neutral-200 text-black font-bold text-xs uppercase tracking-widest rounded-full transition-colors duration-300"
-            >
-              SEND ANOTHER MESSAGE
-            </button>
+            <div className="pt-6">
+              <LiquidMetalButton
+                label="SEND ANOTHER MESSAGE"
+                onClick={() => {
+                  setSubmitted(false);
+                  setFormData({
+                    fullName: '',
+                    companyName: '',
+                    email: '',
+                    message: '',
+                    website: '',
+                  });
+                }}
+              />
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-8 max-w-4xl">
@@ -183,14 +184,13 @@ export default function ContactSection() {
             </div>
 
             {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={submitting}
-              className="w-full md:w-auto px-10 py-5 bg-white hover:bg-neutral-200 text-black font-extrabold text-sm uppercase tracking-widest rounded-full transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-white/10 flex items-center justify-center space-x-3 cursor-pointer"
-            >
-              <span>{submitting ? 'TRANSMITTING...' : 'INITIATE EXECUTIVE INQUIRY'}</span>
-              <span className="text-lg">➔</span>
-            </button>
+            <div className="pt-2">
+              <LiquidMetalButton
+                type="submit"
+                disabled={submitting}
+                label={submitting ? 'TRANSMITTING...' : 'INITIATE EXECUTIVE INQUIRY ➔'}
+              />
+            </div>
           </form>
         )}
 
